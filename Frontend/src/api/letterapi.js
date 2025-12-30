@@ -1,4 +1,4 @@
-const API = "http://localhost:8000";
+const API = "https://whispernote-1.onrender.com";
 
 export const api = {
   createLetter: (text) =>
