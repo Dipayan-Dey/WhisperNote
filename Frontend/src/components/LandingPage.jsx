@@ -69,8 +69,8 @@ export default function LandingPage({ onWriteLetter }) {
           Where hearts whisper through words
         </p>
 
-        <div className="relative">
-          <div className="absolute inset-0 bg-white/40 backdrop-blur-sm rounded-3xl shadow-lg border border-white/50" />
+        <div className="relative mb-6">
+          <div className="absolute inset-0 bg-white/40 backdrop-blur-sm rounded-3xl shadow-lg border border-white/50 " />
           <div className="relative p-6">
             <p
               className="text-sm md:text-xl text-amber-900 leading-relaxed"
