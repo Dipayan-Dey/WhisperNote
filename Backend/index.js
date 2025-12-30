@@ -1,0 +1,23 @@
+import express from "express";
+import cors from "cors";
+import dotenv from "dotenv";
+import connectDB from "./src/config/db.js";
+// import connectDB from "./config/db.js";
+// import letterRoutes from "./routes/letterRoutes.js";
+import letterRoutes from "./src/routers/letterRoutes.js";
+dotenv.config();
+connectDB();
+
+const app = express();
+app.use(cors({
+  origin: "*",
+  methods: ["GET", "POST", "PATCH", "DELETE"],
+  credentials: true,
+}));
+app.use(express.json());
+
+app.use("/", letterRoutes);
+
+app.listen(process.env.PORT, () =>
+  console.log(`Server running on port ${process.env.PORT}`)
+);

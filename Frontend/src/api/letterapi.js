@@ -1,0 +1,20 @@
+const API = "http://localhost:8000";
+
+export const api = {
+  createLetter: (text) =>
+    fetch(`${API}/create`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ text })
+    }).then(res => res.json()),
+
+  getLetter: (id) =>
+    fetch(`${API}/letter/${id}`).then(res => res.json()),
+
+  replyLetter: (id, text) =>
+    fetch(`${API}/letter/${id}`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ text })
+    })
+};
