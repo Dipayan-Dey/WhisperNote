@@ -10,10 +10,11 @@ export default function LandingPage({ onWriteLetter }) {
   }, []);
 
   return (
-    <div className="h-screen overflow-hidden flex flex-col items-center justify-center p-4 md:p-6 relative">
+    // Changed justify-center to justify-between to spread content across the screen
+    <div className="h-screen overflow-hidden flex flex-col items-center justify-between p-6 md:p-10 relative">
       <FloatingHearts />
 
-      {/* Dreamy gradient background with paper texture */}
+      {/* Dreamy gradient background */}
       <div
         className="absolute inset-0 bg-gradient-to-br from-rose-50 via-amber-50 to-purple-50"
         style={{
@@ -25,81 +26,54 @@ export default function LandingPage({ onWriteLetter }) {
         }}
       />
 
-      {/* Floating orbs */}
-      <div className="absolute top-20 left-10 w-64 h-64 bg-gradient-to-br from-pink-200 to-rose-300 rounded-full blur-3xl opacity-20 animate-pulse-slow" />
+      {/* Top Section: Logo & Title */}
       <div
-        className="absolute bottom-32 right-20 w-72 h-72 bg-gradient-to-br from-purple-200 to-indigo-300 rounded-full blur-3xl opacity-25 animate-pulse-slow"
-        style={{ animationDelay: "1.5s" }}
-      />
-      <div
-        className="absolute top-1/3 right-1/4 w-48 h-48 bg-gradient-to-br from-amber-200 to-orange-300 rounded-full blur-3xl opacity-15 animate-pulse-slow"
-        style={{ animationDelay: "3s" }}
-      />
-
-      {/* Main content */}
-      <div
-        className={`text-center space-y-3 md:space-y-6 max-w-4xl z-10 transition-all duration-1000 ${
-          visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+        className={`w-full text-center space-y-4 z-10 transition-all duration-1000 pt-4 ${
+          visible ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-10"
         }`}
       >
-        {/* Logo */}
-     <div className="relative inline-block">
-  {/* Soft glowing background */}
-  <div className="absolute inset-0 rounded-full bg-gradient-to-br from-rose-300 via-amber-200 to-purple-300 blur-2xl opacity-50 scale-110"></div>
+        <div className="relative inline-block">
+          <div className="absolute inset-0 rounded-full bg-gradient-to-br from-rose-300 via-amber-200 to-purple-300 blur-2xl opacity-50 scale-110"></div>
+          <img
+            src={logo}
+            alt="WhisperNote logo"
+            className="relative h-24 md:h-32 object-contain mx-auto drop-shadow-[0_12px_25px_rgba(251,207,232,0.7)]"
+          />
+        </div>
 
-  {/* Logo */}
-  <img
-    src={logo}
-    alt="WhisperNote logo"
-    className="relative h-20 md:h-28 object-contain mx-auto
-               drop-shadow-[0_12px_25px_rgba(251,207,232,0.7)]
-               transition-transform duration-500 hover:scale-105"
-  />
-</div>
-
-
-        {/* Title */}
         <div className="relative">
-          <div className="absolute -top-6 left-1/2 transform -translate-x-1/2 text-4xl md:text-6xl text-amber-600 opacity-20 animate-pulse">
-            ✦
-          </div>
-
           <h1
-            className="text-5xl md:text-7xl font-serif text-transparent bg-clip-text bg-gradient-to-r from-rose-800 via-amber-700 to-purple-800 mb-3 tracking-wider px-4"
-            style={{
-              fontFamily: "'Playfair Display', serif",
-              textShadow: "0 0 40px rgba(251, 207, 232, 0.5)",
-            }}
+            className="text-4xl md:text-6xl font-serif text-transparent bg-clip-text bg-gradient-to-r from-rose-800 via-amber-700 to-purple-800 tracking-wider px-4"
+            style={{ fontFamily: "'Playfair Display', serif" }}
           >
             Dear Someone
           </h1>
-
-          <div className="flex items-center justify-center gap-3 md:gap-4 mt-2">
-            <span className="text-rose-400 animate-pulse text-xl">❀</span>
-            <div className="h-0.5 w-20 bg-gradient-to-r from-transparent via-rose-300 to-transparent" />
-            <span className="text-amber-500 animate-pulse text-lg">✿</span>
-            <div className="h-0.5 w-20 bg-gradient-to-r from-transparent via-amber-300 to-transparent" />
-            <span className="text-purple-400 animate-pulse text-xl">✾</span>
+          <div className="flex items-center justify-center gap-3 mt-2">
+            <div className="h-0.5 w-16 bg-gradient-to-r from-transparent via-rose-300 to-transparent" />
+            <span className="text-rose-400 animate-pulse">❀</span>
+            <div className="h-0.5 w-16 bg-gradient-to-r from-transparent via-rose-300 to-transparent" />
           </div>
         </div>
+      </div>
 
-        {/* Subtitle */}
+      {/* Middle Section: Subtitle & Description */}
+      <div
+        className={`w-full max-w-2xl text-center space-y-6 z-10 transition-all duration-1000 delay-300 ${
+          visible ? "opacity-100 scale-100" : "opacity-0 scale-95"
+        }`}
+      >
         <p
-          className="text-xl md:text-3xl text-rose-900 italic"
-          style={{
-            fontFamily: "'Dancing Script', cursive",
-            textShadow: "0 2px 10px rgba(251, 207, 232, 0.3)",
-          }}
+          className="text-2xl md:text-4xl text-rose-900 italic"
+          style={{ fontFamily: "'Dancing Script', cursive" }}
         >
           Where hearts whisper through words
         </p>
 
-        {/* Description */}
-        <div className="relative max-w-2xl mx-auto">
-          <div className="absolute inset-0 bg-gradient-to-r from-rose-100 via-amber-50 to-purple-100 rounded-3xl transform -rotate-1 opacity-50" />
-          <div className="relative bg-white/80 backdrop-blur-sm rounded-3xl p-5 md:p-6 shadow-xl border border-amber-200/50">
+        <div className="relative">
+          <div className="absolute inset-0 bg-white/40 backdrop-blur-sm rounded-3xl shadow-lg border border-white/50" />
+          <div className="relative p-6">
             <p
-              className="text-xs md:text-lg text-amber-900 leading-relaxed px-2"
+              className="text-sm md:text-xl text-amber-900 leading-relaxed"
               style={{ fontFamily: "'Libre Baskerville', serif" }}
             >
               In a world of fleeting messages, create something{" "}
@@ -107,45 +81,50 @@ export default function LandingPage({ onWriteLetter }) {
               your soul into words that{" "}
               <span className="text-purple-700 font-semibold">
                 echo through eternity
-              </span>
-              .
+              </span>.
             </p>
           </div>
         </div>
-
-        {/* CTA */}
-        <div className="relative">
-          <button
-            onClick={onWriteLetter}
-            className="group relative mt-4 px-10 md:px-14 py-3 md:py-4 max-w-full
-                       bg-gradient-to-r from-rose-700 via-amber-600 to-purple-700 
-                       text-white rounded-full text-lg md:text-2xl font-serif 
-                       shadow-2xl transform hover:scale-105 transition-all duration-700 
-                       overflow-hidden border border-white/20"
-            style={{ fontFamily: "'Playfair Display', serif" }}
-          >
-            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
-            <span className="relative z-10 flex items-center gap-3">
-              ✍️ Begin Your Letter 💌
-            </span>
-          </button>
-        </div>
       </div>
 
-      {/* Footer */}
-      <footer className="absolute bottom-3 text-xs md:text-sm text-amber-900/70 z-10">
-        <span className="italic">
-          Designed & crafted with love by{" "}
+      {/* Bottom Section: CTA, Creator Name & Footer */}
+      <div
+        className={`w-full text-center space-y-8 z-10 transition-all duration-1000 delay-500 pb-6 ${
+          visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+        }`}
+      >
+        <button
+          onClick={onWriteLetter}
+          className="group relative px-12 py-4 bg-gradient-to-r from-rose-700 via-amber-600 to-purple-700 
+                     text-white rounded-full text-xl md:text-2xl font-serif shadow-2xl 
+                     hover:scale-105 transition-all duration-500 overflow-hidden border border-white/20"
+        >
+          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
+          <span className="relative z-10 flex items-center justify-center gap-3">
+            ✍️ Begin Your Letter 💌
+          </span>
+        </button>
+
+        {/* Prominent Creator Name Section */}
+        <div className="pt-4">
+          <p className="text-amber-900/80 font-serif text-lg">
+            Created with <span className="text-rose-500 animate-pulse">♥</span> by
+          </p>
           <a
             href="https://www.dipayandey.site"
             target="_blank"
             rel="noopener noreferrer"
-            className="font-semibold text-rose-700 hover:text-purple-700 underline underline-offset-4"
+            className="text-2xl md:text-3xl font-bold text-rose-800 hover:text-purple-800 transition-colors tracking-tighter"
+            style={{ fontFamily: "'Playfair Display', serif" }}
           >
             Dipayan Dey
           </a>
-        </span>
-      </footer>
+        </div>
+
+        <footer className="text-[10px] md:text-xs text-amber-900/50 uppercase tracking-[0.2em]">
+          © 2025 WhisperNote • All Rights Reserved
+        </footer>
+      </div>
     </div>
   );
 }
