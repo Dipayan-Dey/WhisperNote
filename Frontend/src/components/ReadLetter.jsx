@@ -49,7 +49,7 @@ export default function ReadLetter({ letterId }) {
   );
 
   return (
-    <div className="min-h-screen p-2 sm:p-4 md:p-6 lg:p-8 relative overflow-hidden">
+    <div className="min-h-screen p-2 sm:p-4 md:p-6 lg:p-8 relative">
       <div className="absolute inset-0 bg-gradient-to-br from-rose-50 via-amber-50 to-purple-50"
            style={{
              backgroundImage: `
