@@ -69,23 +69,26 @@ export default function LandingPage({ onWriteLetter }) {
           Where hearts whisper through words
         </p>
 
-        <div className="relative mb-6">
-          <div className="absolute inset-0 bg-white/40 backdrop-blur-sm rounded-3xl shadow-lg border border-white/50 " />
-          <div className="relative p-6">
-            <p
-              className="text-sm md:text-xl text-amber-900 leading-relaxed"
-              style={{ fontFamily: "'Libre Baskerville', serif" }}
-            >
-              In a world of fleeting messages, create something{" "}
-              <span className="text-rose-700 font-semibold">timeless</span>.
-              Pour your soul into words that{" "}
-              <span className="text-purple-700 font-semibold">
-                echo through eternity
-              </span>
-              .
-            </p>
-          </div>
-        </div>
+      <div className="relative mb-6">
+  <div className="absolute inset-0 bg-white/40 backdrop-blur-sm rounded-3xl shadow-lg border border-white/50" />
+  <div className="relative p-6">
+    <p
+      className="text-sm md:text-xl text-amber-900 leading-relaxed"
+      style={{ fontFamily: "'Libre Baskerville', serif" }}
+    >
+      In a world of fleeting messages, create something{" "}
+      <span className="text-rose-700 font-semibold">timeless</span>.  
+      Send a heartfelt note to your{" "}
+      <span className="text-purple-700 font-semibold">friend or partner</span>{" "}
+      this{" "}
+      <span className="text-rose-800 font-semibold">
+        New Year 2026
+      </span>
+      — words that carry love, hope, and memories into a brand-new beginning.
+    </p>
+  </div>
+</div>
+
       </div>
 
       {/* Bottom Section: CTA, Creator Name & Footer */}
@@ -106,26 +109,7 @@ export default function LandingPage({ onWriteLetter }) {
           </span>
         </button>
 
-        {/* Prominent Creator Name Section */}
-        {/* <div className="pt-4 flex gap-2 items-center justify-center space-y-1">
-          <p
-            className="text-amber-900/80 font-serif text-sm md:text-xl"
-            style={{ fontFamily: "'Libre Baskerville', serif" }}
-          >
-            Created with <span className="text-rose-500 animate-pulse">♥</span>{" "}
-            by
-          </p>
-
-          <a
-            href="https://www.dipayandey.site"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-sm md:text-xl font-bold text-rose-800 hover:text-purple-800 transition-colors tracking-tighter"
-            style={{ fontFamily: "'Playfair Display', serif" }}
-          >
-            WhisperNote Studio
-          </a>
-        </div> */}
+     
 
         <footer className="text-[10px] md:text-xs text-amber-900/50 uppercase tracking-[0.2em]">
           © 2025 <span><a href="https://www.dipayandey.site" className="font-bold text-rose-800 hover:text-purple-800 transition-colors tracking-tighter">WhisperNote</a></span> • All Rights Reserved
