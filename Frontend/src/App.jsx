@@ -45,6 +45,7 @@ import ReadLetter from "./components/ReadLetter";
 // MAIN APP
 // ============================================================================
 export default function App() {
+
   const [page, setPage] = useState("landing");
   const [generatedLink, setGeneratedLink] = useState(null);
   const [currentLetterId, setCurrentLetterId] = useState(null);
@@ -56,6 +57,49 @@ export default function App() {
       setCurrentLetterId(id);
       setPage("read");
     }
+  }, []);
+
+
+ useEffect(() => {
+    // Disable right click
+    const handleContextMenu = (e) => e.preventDefault();
+
+    // Disable copy
+    // const handleCopy = (e) => e.preventDefault();
+
+    // Disable key shortcuts
+    const handleKeyDown = (e) => {
+      // Disable F12, Ctrl+Shift+I, Ctrl+U, Ctrl+S, Ctrl+Shift+C
+      if (
+        e.key === "F12" ||
+        (e.ctrlKey && e.shiftKey && ["I"].includes(e.key.toUpperCase())) ||
+        (e.ctrlKey && ["U", "S","A"].includes(e.key.toUpperCase()))
+      ) {
+        e.preventDefault();
+      }
+    };
+
+    // Disable double click selection
+    const handleDoubleClick = (e) => e.preventDefault();
+  //  const handleSelectStart = (e) => e.preventDefault();
+    document.addEventListener("contextmenu", handleContextMenu);
+    // document.addEventListener("copy", handleCopy);
+    document.addEventListener("keydown", handleKeyDown);
+    document.addEventListener("dblclick", handleDoubleClick);
+//  document.addEventListener("selectstart", handleSelectStart);
+    return () => {
+      document.removeEventListener("contextmenu", handleContextMenu);
+      // document.removeEventListener("copy", handleCopy);
+      document.removeEventListener("keydown", handleKeyDown);
+      document.removeEventListener("dblclick", handleDoubleClick);
+      //  document.addEventListener("selectstart", handleSelectStart);
+    };
+    document.addEventListener("keyup", function(e) {
+  if (e.key === "PrintScreen") {
+    alert("Screenshots are disabled!");
+    navigator.clipboard.writeText(""); // Clear clipboard
+  }
+});
   }, []);
 
   return (

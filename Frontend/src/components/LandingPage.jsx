@@ -106,15 +106,15 @@ export default function LandingPage({ onWriteLetter }) {
         </button>
 
         {/* Prominent Creator Name Section */}
-        <div className="pt-4">
-          <p className="text-amber-900/80 font-serif text-lg">
+        <div className="pt-4 flex gap-2 items-center justify-center space-y-1">
+          <p className="text-amber-900/80 font-serif text-md md:text-xl" style={{ fontFamily: "'Libre Baskerville', serif" }}>
             Created with <span className="text-rose-500 animate-pulse">♥</span> by
           </p>
           <a
             href="https://www.dipayandey.site"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-2xl md:text-3xl font-bold text-rose-800 hover:text-purple-800 transition-colors tracking-tighter"
+            className="text-md md:text-xl font-bold  text-rose-800 hover:text-purple-800 transition-colors tracking-tighter"
             style={{ fontFamily: "'Playfair Display', serif" }}
           >
             Dipayan Dey
