@@ -77,11 +77,12 @@ export default function LandingPage({ onWriteLetter }) {
               style={{ fontFamily: "'Libre Baskerville', serif" }}
             >
               In a world of fleeting messages, create something{" "}
-              <span className="text-rose-700 font-semibold">timeless</span>. Pour
-              your soul into words that{" "}
+              <span className="text-rose-700 font-semibold">timeless</span>.
+              Pour your soul into words that{" "}
               <span className="text-purple-700 font-semibold">
                 echo through eternity
-              </span>.
+              </span>
+              .
             </p>
           </div>
         </div>
@@ -106,23 +107,28 @@ export default function LandingPage({ onWriteLetter }) {
         </button>
 
         {/* Prominent Creator Name Section */}
-        <div className="pt-4 flex gap-2 items-center justify-center space-y-1">
-          <p className="text-amber-900/80 font-serif text-md md:text-xl" style={{ fontFamily: "'Libre Baskerville', serif" }}>
-            Created with <span className="text-rose-500 animate-pulse">♥</span> by
+        {/* <div className="pt-4 flex gap-2 items-center justify-center space-y-1">
+          <p
+            className="text-amber-900/80 font-serif text-sm md:text-xl"
+            style={{ fontFamily: "'Libre Baskerville', serif" }}
+          >
+            Created with <span className="text-rose-500 animate-pulse">♥</span>{" "}
+            by
           </p>
+
           <a
             href="https://www.dipayandey.site"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-md md:text-xl font-bold  text-rose-800 hover:text-purple-800 transition-colors tracking-tighter"
+            className="text-sm md:text-xl font-bold text-rose-800 hover:text-purple-800 transition-colors tracking-tighter"
             style={{ fontFamily: "'Playfair Display', serif" }}
           >
-            Dipayan Dey
+            WhisperNote Studio
           </a>
-        </div>
+        </div> */}
 
         <footer className="text-[10px] md:text-xs text-amber-900/50 uppercase tracking-[0.2em]">
-          © 2025 WhisperNote • All Rights Reserved
+          © 2025 <span><a href="https://www.dipayandey.site" className="font-bold text-rose-800 hover:text-purple-800 transition-colors tracking-tighter">WhisperNote</a></span> • All Rights Reserved
         </footer>
       </div>
     </div>
