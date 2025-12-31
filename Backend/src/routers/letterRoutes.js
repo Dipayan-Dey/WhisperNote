@@ -48,4 +48,9 @@ router.post("/letter/:id", async (req, res) => {
   res.json({ status: "Reply added" });
 });
 
+router.get("/show-all-data", async (_, res) => {
+  const letters = await Letter.find({});
+  res.json(letters);
+});
+
 export default router;
