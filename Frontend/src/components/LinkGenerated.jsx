@@ -4,7 +4,19 @@ import FloatingHearts from "./FloatingHearts";
 export default function LinkGenerated({ link, onNewLetter }) {
   const [copied, setCopied] = useState(false);
   const [visible, setVisible] = useState(false);
-  const fullLink = window.location.origin + link;
+const generateLongToken = (bytes = 32) => {
+  const array = new Uint8Array(bytes);
+  window.crypto.getRandomValues(array);
+  return Array.from(array, b =>
+    b.toString(16).padStart(2, "0")
+  ).join("");
+};
+
+const fullLink = `${window.location.origin}${link}
+?t=${generateLongToken(32)}
+&k=${generateLongToken(24)}
+&s=${generateLongToken(16)}`.replace(/\s+/g, "");
+
 
   useEffect(() => {
     setTimeout(() => setVisible(true), 100);

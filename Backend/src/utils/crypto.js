@@ -7,7 +7,7 @@ const secretKey = crypto
   .digest();
 
 export function encrypt(text) {
-  const iv = crypto.randomBytes(12); // GCM recommended IV size
+  const iv = crypto.randomBytes(12); 
   const cipher = crypto.createCipheriv(algorithm, secretKey, iv);
 
   let encrypted = cipher.update(text, "utf8", "hex");
