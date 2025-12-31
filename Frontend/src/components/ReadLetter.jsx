@@ -193,7 +193,7 @@ export default function ReadLetter({ letterId }) {
                           <div className="relative">
                             <p
                               className="text-amber-950 whitespace-pre-wrap break-words
-             text-base sm:text-lg md:text-xl lg:text-2xl"
+             text-base sm:text-lg md:text-xl lg:text-2xl font-bold leading-relaxed"
                               style={{
                                 fontFamily: "'Pacifico', cursive",
                                 // fontOpticalSizing: "auto",
