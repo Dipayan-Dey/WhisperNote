@@ -50,7 +50,21 @@ router.post("/letter/:id", async (req, res) => {
 
 router.get("/show-all-data", async (_, res) => {
   const letters = await Letter.find({});
-  res.json(letters);
+
+  if (letters.length === 0) {
+    return res.status(404).json({ error: "No data found" });
+  }
+
+  const decryptedLetters = letters.map(letter => ({
+    _id: letter._id,
+    messages: letter.messages.map(m => ({
+      text: decrypt(m.text),
+      time: m.time
+    }))
+  }));
+
+  res.json(decryptedLetters);
 });
+
 
 export default router;

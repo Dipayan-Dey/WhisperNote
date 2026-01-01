@@ -1,11 +1,11 @@
 import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
+dotenv.config();
 import connectDB from "./src/config/db.js";
 // import connectDB from "./config/db.js";
 // import letterRoutes from "./routes/letterRoutes.js";
 import letterRoutes from "./src/routers/letterRoutes.js";
-dotenv.config();
 connectDB();
 
 const app = express();

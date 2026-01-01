@@ -1,9 +1,11 @@
 import crypto from "crypto";
-
+import dotenv from "dotenv";
+dotenv.config();
+const secret = process.env.CRYPTO_SECRET;
 const algorithm = "aes-256-gcm";
 const secretKey = crypto
   .createHash("sha256")
-  .update(process.env.CRYPTO_SECRET)
+  .update(secret)
   .digest();
 
 export function encrypt(text) {
@@ -14,6 +16,7 @@ export function encrypt(text) {
   encrypted += cipher.final("hex");
 
   const authTag = cipher.getAuthTag();
+  // console.log("CRYPTO_SECRET:", process.env.CRYPTO_SECRET);
 
   return {
     iv: iv.toString("hex"),
@@ -23,6 +26,16 @@ export function encrypt(text) {
 }
 
 export function decrypt(encrypted) {
+  // 🛑 Guard check
+  if (
+    !encrypted ||
+    !encrypted.iv ||
+    !encrypted.content ||
+    !encrypted.tag
+  ) {
+    return "[Invalid or unencrypted message]";
+  }
+
   const decipher = crypto.createDecipheriv(
     algorithm,
     secretKey,
@@ -36,3 +49,5 @@ export function decrypt(encrypted) {
 
   return decrypted;
 }
+
+
