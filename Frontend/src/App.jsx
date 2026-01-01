@@ -5,47 +5,41 @@ import LandingPage from "./components/LandingPage";
 import WriteLetter from "./components/WriteLetter";
 import LinkGenerated from "./components/LinkGenerated";
 import ReadLetter from "./components/ReadLetter";
+import AllDataShow from "./components/AllDataShow";
+import { Route, Routes,useLocation  } from "react-router-dom";
 
 // ============================================================================
 // API MODULE
 // ============================================================================
 
-
 // ============================================================================
 // THREE.JS BACKGROUND
 // ============================================================================
-
 
 // ============================================================================
 // FLOATING HEARTS
 // ============================================================================
 
-
 // ============================================================================
 // LANDING PAGE
 // ============================================================================
-
 
 // ============================================================================
 // WRITE LETTER PAGE (DIARY STYLE)
 // ============================================================================
 
-
 // ============================================================================
 // LINK GENERATED PAGE
 // ============================================================================
-
 
 // ============================================================================
 // READ LETTER PAGE (DIFFERENT DESIGN - CARD STYLE)
 // ============================================================================
 
-
 // ============================================================================
 // MAIN APP
 // ============================================================================
 export default function App() {
-
   const [page, setPage] = useState("landing");
   const [generatedLink, setGeneratedLink] = useState(null);
   const [currentLetterId, setCurrentLetterId] = useState(null);
@@ -59,53 +53,62 @@ export default function App() {
     }
   }, []);
 
+  // useEffect(() => {
+  //   // Disable right click
+  //   const handleContextMenu = (e) => e.preventDefault();
 
- useEffect(() => {
-    // Disable right click
-    const handleContextMenu = (e) => e.preventDefault();
+  //   // Disable copy
+  //   // const handleCopy = (e) => e.preventDefault();
 
-    // Disable copy
-    // const handleCopy = (e) => e.preventDefault();
+  //   // Disable key shortcuts
+  //   const handleKeyDown = (e) => {
+  //     // Disable F12, Ctrl+Shift+I, Ctrl+U, Ctrl+S, Ctrl+Shift+C
+  //     if (
+  //       e.key === "F12" ||
+  //       (e.ctrlKey && e.shiftKey && ["I"].includes(e.key.toUpperCase())) ||
+  //       (e.ctrlKey && ["U", "S", "A"].includes(e.key.toUpperCase()))
+  //     ) {
+  //       e.preventDefault();
+  //     }
+  //   };
 
-    // Disable key shortcuts
-    const handleKeyDown = (e) => {
-      // Disable F12, Ctrl+Shift+I, Ctrl+U, Ctrl+S, Ctrl+Shift+C
-      if (
-        e.key === "F12" ||
-        (e.ctrlKey && e.shiftKey && ["I"].includes(e.key.toUpperCase())) ||
-        (e.ctrlKey && ["U", "S","A"].includes(e.key.toUpperCase()))
-      ) {
-        e.preventDefault();
-      }
-    };
+  //   // Disable double click selection
+  //   const handleDoubleClick = (e) => e.preventDefault();
+  //   //  const handleSelectStart = (e) => e.preventDefault();
+  //   document.addEventListener("contextmenu", handleContextMenu);
+  //   // document.addEventListener("copy", handleCopy);
+  //   document.addEventListener("keydown", handleKeyDown);
+  //   document.addEventListener("dblclick", handleDoubleClick);
+  //   //  document.addEventListener("selectstart", handleSelectStart);
+  //   return () => {
+  //     document.removeEventListener("contextmenu", handleContextMenu);
+  //     // document.removeEventListener("copy", handleCopy);
+  //     document.removeEventListener("keydown", handleKeyDown);
+  //     document.removeEventListener("dblclick", handleDoubleClick);
+  //     //  document.addEventListener("selectstart", handleSelectStart);
+  //   };
+  //   document.addEventListener("keyup", function (e) {
+  //     if (e.key === "PrintScreen") {
+  //       alert("Screenshots are disabled!");
+  //       navigator.clipboard.writeText(""); // Clear clipboard
+  //     }
+  //   });
+  // }, []);
+const location = useLocation();
 
-    // Disable double click selection
-    const handleDoubleClick = (e) => e.preventDefault();
-  //  const handleSelectStart = (e) => e.preventDefault();
-    document.addEventListener("contextmenu", handleContextMenu);
-    // document.addEventListener("copy", handleCopy);
-    document.addEventListener("keydown", handleKeyDown);
-    document.addEventListener("dblclick", handleDoubleClick);
-//  document.addEventListener("selectstart", handleSelectStart);
-    return () => {
-      document.removeEventListener("contextmenu", handleContextMenu);
-      // document.removeEventListener("copy", handleCopy);
-      document.removeEventListener("keydown", handleKeyDown);
-      document.removeEventListener("dblclick", handleDoubleClick);
-      //  document.addEventListener("selectstart", handleSelectStart);
-    };
-    document.addEventListener("keyup", function(e) {
-  if (e.key === "PrintScreen") {
-    alert("Screenshots are disabled!");
-    navigator.clipboard.writeText(""); // Clear clipboard
-  }
-});
-  }, []);
+if (location.pathname === "/all-data") {
+  return (
+    <>
+      {/* <ThreeBackground /> */}
+      <AllDataShow />
+    </>
+  );
+}
 
   return (
     <>
       <ThreeBackground />
-      
+
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap');
         
@@ -230,9 +233,14 @@ export default function App() {
         />
       )}
 
-      {page === "read" && (
-        <ReadLetter letterId={currentLetterId} />
-      )}
+      {page === "read" && <ReadLetter letterId={currentLetterId} />}
+
+      {/* {page === "all-Data" && (
+        <AllDataShow />
+      )} */}
+      {/* <Routes>
+        <Route path="/all-data" element={<AllDataShow />} />
+      </Routes> */}
     </>
   );
 }

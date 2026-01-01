@@ -1,0 +1,73 @@
+import React, { useEffect, useState } from "react";
+import { api } from "../api/letterapi";
+
+export default function AllDataShow() {
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    api.getAllLetters()
+      .then(res => {
+        setData(res);
+        setLoading(false);
+      })
+      .catch(err => {
+        console.error(err);
+        setLoading(false);
+      });
+  }, []);
+
+  if (loading) {
+    return (
+      <div className="flex justify-center items-center h-screen text-white text-xl animate-pulse">
+        Loading encrypted memories...
+      </div>
+    );
+  }
+
+  return (
+    <div className="min-h-screen px-4 py-10 text-black flex justify-center">
+      <div className="max-w-5xl w-full grid gap-8 md:grid-cols-2">
+        {data.map((letter, index) => (
+          <div
+            key={letter._id}
+            className="bg-white/95 backdrop-blur-lg rounded-2xl shadow-xl p-6
+                       transform transition duration-500 hover:-translate-y-2
+                       hover:shadow-2xl animate-fade-in-up"
+            style={{ animationDelay: `${index * 0.15}s` }}
+          >
+            {/* Header */}
+            <div className="mb-4 border-b pb-2">
+              <p className="text-xs uppercase tracking-widest text-gray-500">
+                Letter ID
+              </p>
+              <p className="font-mono text-sm break-all text-indigo-600">
+                {letter._id}
+              </p>
+            </div>
+
+            {/* Messages */}
+            <div className="space-y-3">
+              {letter.messages.map((msg, i) => (
+                <div
+                  key={i}
+                  className="bg-gradient-to-br from-rose-50 to-orange-50
+                             rounded-xl p-3 text-sm shadow-inner
+                             animate-fade-in-up"
+                  style={{ animationDelay: `${i * 0.1}s` }}
+                >
+                  <p className="text-gray-800 leading-relaxed">
+                    {msg.text}
+                  </p>
+                  <p className="text-[10px] text-right text-gray-400 mt-2">
+                    {new Date(msg.time).toLocaleString()}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
