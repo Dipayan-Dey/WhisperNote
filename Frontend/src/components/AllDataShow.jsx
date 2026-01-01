@@ -15,7 +15,9 @@ export default function AllDataShow() {
         console.error(err);
         setLoading(false);
       });
+      // console.log(res.length)
   }, []);
+  console.log(data.length)
 
   if (loading) {
     return (
@@ -26,8 +28,13 @@ export default function AllDataShow() {
   }
 
   return (
+   <>
+   
+    <div className="flex justify-center items-center mt-10">
+        <h1 className="text-ceter text-2xl  font-bold"> {data.length} Data Present Now</h1>
+    </div>
     <div className="min-h-screen px-4 py-10 text-black flex justify-center">
-      <div className="max-w-5xl w-full grid gap-8 md:grid-cols-2">
+      <div className="max-w-8xl w-full grid gap-8 md:grid-cols-2">
         {data.map((letter, index) => (
           <div
             key={letter._id}
@@ -69,5 +76,6 @@ export default function AllDataShow() {
         ))}
       </div>
     </div>
+   </>
   );
 }
