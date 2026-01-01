@@ -66,5 +66,10 @@ router.get("/show-all-data", async (_, res) => {
   res.json(decryptedLetters);
 });
 
+router.delete("/delete-one/:id", async (req, res) => {
+  const letter = await Letter.findByIdAndDelete(req.params.id);
+  if (!letter) return res.status(404).json({ error: "Not found" });
+  res.json({ status: "Letter deleted" });
+});
 
 export default router;

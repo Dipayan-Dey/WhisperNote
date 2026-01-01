@@ -21,4 +21,11 @@ export const api = {
  
   getAllLetters: () =>
     fetch(`${API}/show-all-data`).then(res => res.json())
+
+    ,
+
+  deleteLetter: (id) =>
+    fetch(`${API}/delete-one/${id}`, {
+      method: "DELETE"
+    }).then(res => res.json())
 };
