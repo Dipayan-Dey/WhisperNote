@@ -30,8 +30,8 @@ export default function AllDataShow() {
   return (
    <>
    
-    <div className="flex justify-center items-center mt-10">
-        <h1 className="text-ceter text-2xl  font-bold"> {data.length} Data Present Now</h1>
+    <div className="flex justify-center items-center mt-10 ">
+        <h1 className="text-ceter text-2xl  font-bold bg-amber-300 p-3 rounded-4xl"> Count Of All Data : {data.length} </h1>
     </div>
     <div className="min-h-screen px-4 py-10 text-black flex justify-center">
       <div className="max-w-8xl w-full grid gap-8 md:grid-cols-2">
