@@ -228,7 +228,7 @@ export default function ReadLetter({ letterId }) {
               <div className="text-center pb-12 px-4 ml-16 sm:ml-20 md:ml-24 lg:ml-32">
                 <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center">
                   {/* Write Reply Button */}
-                  {/* <button
+                  <button
                     onClick={() => setShowReply(true)}
                     className="group relative px-8 sm:px-12 md:px-14 py-3 sm:py-4 
                  bg-gradient-to-r from-rose-700 via-amber-600 to-purple-700 
@@ -247,7 +247,7 @@ export default function ReadLetter({ letterId }) {
                       <span className="font-semibold">Write Reply</span>
                       <span className="text-xl sm:text-2xl">💌</span>
                     </span>
-                  </button> */}
+                  </button>
 
                   {/* Send Letter Button */}
                   <a
