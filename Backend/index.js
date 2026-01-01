@@ -15,7 +15,7 @@ app.use(cors({
   credentials: true,
 }));
 app.use(express.json());
-app.get("/", (req, res) => {
+app.get("/", (_, res) => {
   res.send("Love Letter API is running...");
 });
 app.use("/", letterRoutes);
