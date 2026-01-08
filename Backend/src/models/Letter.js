@@ -1,17 +1,46 @@
-import mongoose from "mongoose";
+import AWS from "aws-sdk";
 
-const messageSchema = new mongoose.Schema({
-  text: {
-    iv: String,
-    content: String,
-    tag: String
-  },
-  time: { type: Date, default: Date.now }
-});
+const dynamodb = new AWS.DynamoDB.DocumentClient();
+const TABLE_NAME = "Letters";
 
-const letterSchema = new mongoose.Schema({
-  _id: String,
-  messages: [messageSchema]
-});
+export const createLetter = async (letter) => {
+  await dynamodb.put({
+    TableName: TABLE_NAME,
+    Item: letter
+  }).promise();
+};
 
-export default mongoose.model("Letter", letterSchema);
+export const getLetterById = async (id) => {
+  const result = await dynamodb.get({
+    TableName: TABLE_NAME,
+    Key: { _id: id }
+  }).promise();
+
+  return result.Item;
+};
+
+export const addReply = async (id, message) => {
+  await dynamodb.update({
+    TableName: TABLE_NAME,
+    Key: { _id: id },
+    UpdateExpression: "SET messages = list_append(messages, :msg)",
+    ExpressionAttributeValues: {
+      ":msg": [message]
+    }
+  }).promise();
+};
+
+export const getAllLetters = async () => {
+  const result = await dynamodb.scan({
+    TableName: TABLE_NAME
+  }).promise();
+
+  return result.Items;
+};
+
+export const deleteLetter = async (id) => {
+  await dynamodb.delete({
+    TableName: TABLE_NAME,
+    Key: { _id: id }
+  }).promise();
+};

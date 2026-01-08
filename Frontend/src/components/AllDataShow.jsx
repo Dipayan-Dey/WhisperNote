@@ -55,16 +55,18 @@ export default function AllDataShow() {
               style={{ animationDelay: `${index * 0.15}s` }}
             >
               {/* Header */}
-              <div className="mb-4 border-b pb-2">
-                <p className="text-xs uppercase tracking-widest text-gray-500">
+              <div className="mb-4 border-b pb-2 flex justify-between items-center">
+               <div>
+                 <p className="text-xs uppercase tracking-widest text-gray-500">
                   Letter ID
                 </p>
                 <p className="font-mono text-sm break-all text-indigo-600">
                   {letter._id}
                 </p>
+               </div>
                 <button
                   onClick={deleteLetterhandler(letter._id)}
-                  className="mt-2 px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition"
+                  className="mt-2 px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition right-0 "
                 >
                   Delete
                 </button>
