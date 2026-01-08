@@ -1,12 +1,6 @@
 import express from "express";
 import { v4 as uuidv4 } from "uuid";
-import {
-  createLetter,
-  getLetterById,
-  addReply,
-  getAllLetters,
-  deleteLetter
-} from "../models/Letter.js";
+import Letter from "../models/Letter.js";
 import { encrypt, decrypt } from "../utils/crypto.js";
 
 const router = express.Router();
@@ -17,19 +11,21 @@ router.post("/create", async (req, res) => {
 
   const encryptedText = encrypt(req.body.text);
 
-  await createLetter({
+  const letter = new Letter({
     _id: id,
-    messages: [{ text: encryptedText, time: new Date() }]
+    messages: [{ text: encryptedText }]
   });
 
+  await letter.save();
   res.json({ link: `/letter/${id}` });
 });
 
 /* GET LETTER */
 router.get("/letter/:id", async (req, res) => {
-  const letter = await getLetterById(req.params.id);
+  const letter = await Letter.findById(req.params.id);
   if (!letter) return res.status(404).json({ error: "Not found" });
 
+  // 🔓 Decrypt before sending
   const decrypted = {
     _id: letter._id,
     messages: letter.messages.map(m => ({
@@ -45,23 +41,34 @@ router.get("/letter/:id", async (req, res) => {
 router.post("/letter/:id", async (req, res) => {
   const encryptedText = encrypt(req.body.text);
 
-  await addReply(req.params.id, {
-    text: encryptedText,
-    time: new Date()
+  await Letter.findByIdAndUpdate(req.params.id, {
+    $push: { messages: { text: encryptedText } }
   });
 
   res.json({ status: "Reply added" });
 });
 
-/* SHOW ALL */
 router.get("/show-all-data", async (_, res) => {
-  const letters = await getAllLetters();
-  res.json(letters);
+  const letters = await Letter.find({});
+
+  if (letters.length === 0) {
+    return res.status(404).json({ error: "No data found" });
+  }
+
+  const decryptedLetters = letters.map(letter => ({
+    _id: letter._id,
+    messages: letter.messages.map(m => ({
+      text: decrypt(m.text),
+      time: m.time
+    }))
+  }));
+
+  res.json(decryptedLetters);
 });
 
-/* DELETE */
 router.delete("/delete-one/:id", async (req, res) => {
-  await deleteLetter(req.params.id);
+  const letter = await Letter.findByIdAndDelete(req.params.id);
+  if (!letter) return res.status(404).json({ error: "Not found" });
   res.json({ status: "Letter deleted" });
 });
 
